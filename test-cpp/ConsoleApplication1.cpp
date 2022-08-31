@@ -41,7 +41,7 @@ string* hash_strings;
 
 void GenerateRandomHashes() {
 	hashes = new byte[MAX_HASHES][HASH_SIZE];
-	//+++hash_strings = new string[MAX_HASHES];
+	hash_strings = new string[MAX_HASHES];
 
 	for (int idxHash = 0; idxHash < MAX_HASHES; idxHash++) {
 		srand(static_cast<unsigned int>(time(0)) + idxHash);
@@ -51,8 +51,8 @@ void GenerateRandomHashes() {
 		for (int idxByte = 0; idxByte < HASH_SIZE; idxByte += 2)
 			*(uint16_t*)&hashes[idxHash][idxByte] = 0x0101 | (uint16_t)rand();
 		////hash_strings[idxHash] = hexStr(hashes[idxHash], HASH_SIZE);
-		//+++hashes[idxHash][(int)((float)HASH_SIZE / 2)] = 0;
-		//+++hash_strings[idxHash] = move(string((char*)hashes[idxHash]));
+		hashes[idxHash][(int)((float)HASH_SIZE / 2)] = 0;
+		hash_strings[idxHash] = move(string((char*)hashes[idxHash]));
 	}
 
 	//cout << hexStr(hashes[0], HASH_SIZE);
@@ -347,6 +347,9 @@ int main(int argc, char* argv[]) {
 
 
 //32'000'000 heap
+
+//c++ umap 28686 28591
+//c++ umap 12873 12456
 
 //rust HashMap 16700
 //rust HashMap 9936

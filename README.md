@@ -72,6 +72,12 @@ The testing has been performed on Windows 7x64.
 | 3\*8+2 / 1\*8-6 | 4234/2700 |          |
 | 3\*8+7 / 1\*8-4 |           | mem over |
 
+## 32'000'000 records with test hash 2d array on a heap (native hash maps)
+
+| Native     | c++         | c#         | go         | rust       |
+|------------|-------------|------------|------------|------------|
+| algorithms | 28591/12456 | 9861/15098 | 10925/5155 | 16700/9936 |
+
 ## 32'000'000 records with test hash 2d array on a heap
 
 | Tree size       | c          | c++         | c#            | go         | rust       |

@@ -8,6 +8,8 @@ The custom algorithm can be way imperfect, so take these tests with a grain of s
 
 The algorithm doesn't hash a key, instead it expects SHA256 as a key and stores each key and value pair in it's hash tree.
 
+Everywhere release x64 configurations has been used.
+
 __"Tree size"__ means size of pointer arrays in the top lovel of hash map and in the consequent layers.
 
 So __3\*8+7 / 1\*8-4__ means 3 bytes plus 7 bits of key data will be used for addressing the top pointer array of the hash tree, while 1 byte minus 4 bits of subsequent key data will be used for addressing pointer arrays of the lower levels of the hash tree.
@@ -72,16 +74,38 @@ The testing has been performed on Windows 7x64.
 
 ## 32'000'000 records with test hash 2d array on a heap
 
-| Language | c | c++ | c# | go | rust |
-|----------|---|-----|----|----|------|
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
+| Tree size       | c          | c++         | c#            | go         | rust       |
+|-----------------|------------|-------------|---------------|------------|------------|
+| 3\*8+2 / 1\*8-6 |            | 22717/22665 |               |            |            |
+| 3\*8+1 / 1\*8-6 | 13557/8156 |             |               |            | 9353/11247 |
+| 3\*8+2 / 1\*8-6 | 10470/6103 | 22844/22823 |               |            | 9044/9615  |
+| 3\*8+3 / 1\*8-7 | 10173/5845 |             |               |            | 9429/8911  |
+| 3\*8+3 / 1\*8-6 | 10204/5875 | 19207/18580 |               | 12316/4920 | 9461/8662  |
+| 3\*8+3 / 1\*8-5 | 10155/5862 |             |               |            | 9507/8496  |
+| 3\*8+3 / 1\*8-4 | 10181/5825 |             |               |            | 10269/8460 |
+| 3\*8+3 / 1\*8-3 |            |             |               |            | 11149/8435 |
+| 3\*8+3 / 1\*8-0 | 10296/5841 |             |               |            |            |
+| 3\*8+4 / 1\*8-3 |            |             |               | 10988/4198 | 12460/8008 |
+| 3\*8+4 / 1\*8-4 |            |             |               | 10940/4020 | 11895/8008 |
+| 3\*8+4 / 1\*8-5 |            |             |               | 10956/4049 | 11597/8011 |
+| 3\*8+4 / 1\*8-6 | 10909/6640 | 18378/17201 | 155978/200232 | 11021/4064 | 12074/8205 |
+| 3\*8+4 / 1\*8-7 |            |             |               | 10920/4487 | 11438/8218 |
+| 3\*8+5 / 1\*8-6 | 11487/6969 | 14940/13481 |               | 10359/4252 |            |
+| 3\*8+6 / 1\*8-6 | 12371/7156 | 13441/9476  |               | 11398/4096 |            |
+| 3\*8+7 / 1\*8-6 | 13706/7146 | 13887/8002  |               | 13486/3960 |            |
+| 3\*8+7 / 1\*8-5 | 13774/7176 | 13435/7748  |               |            |            |
+| 3\*8+7 / 1\*8-4 | 13707/7138 | 13634/7650  | mem over      | mem over   | mem over   |
+| 3\*8+7 / 1\*8-3 | 13717/7140 | 13629/7660  |               |            |            |
+| 3\*8+7 / 1\*8-2 |            | mem over    |               |            |            |
+| 3\*8+7 / 1\*8   |            | mem over    |               |            |            |
 
 ## 64'000'000 records with test hash 2d array on a heap
 
-| Language | c | c++ | c# | go | rust |
-|----------|---|-----|----|----|------|
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
+| Tree size       | c++        | go       |
+|-----------------|------------|----------|
+| 3\*8+2 / 1\*8-6 | stack over |          |
+| 3\*8+2 / 1\*8   | mem over   |          |
+| 3\*8+3 / 1\*8   | mem over   |          |
+| 3\*8+4 / 1\*8   | mem over   |          |
+| 3\*8+4 / 1\*8-4 |            | mem over |
+| 3\*8+5 / 1\*8   | mem over   |          |

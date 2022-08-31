@@ -59,19 +59,16 @@ The testing has been performed on Windows 7x64.
 
 ## 8'000'000 records with test hash 2d array on a heap
 
-| Language | c | c++ | c# | go | rust |
-|----------|---|-----|----|----|------|
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
+| Tree size     | c         | c++       | c#          | go       | rust      |
+|---------------|-----------|-----------|-------------|----------|-----------|
+| 3\*8+2 / 1\*8-6 | 2341/1223 | 1831/1016 | 29558/38409 | 2472/830 | 2990/1919 |
 
 ## 16'000'000 records with test hash 2d array on a heap
 
-| Language | c | c++ | c# | go | rust |
-|----------|---|-----|----|----|------|
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
-|          |   |     |    |    |      |
+| Tree size       | c++       | rust     |
+|-----------------|-----------|----------|
+| 3\*8+2 / 1\*8-6 | 4234/2700 |          |
+| 3\*8+7 / 1\*8-4 |           | mem over |
 
 ## 32'000'000 records with test hash 2d array on a heap
 

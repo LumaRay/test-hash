@@ -115,3 +115,11 @@ The testing has been performed on Windows 7x64.
 | 3\*8+4 / 1\*8   | mem over   |          |
 | 3\*8+4 / 1\*8-4 |            | mem over |
 | 3\*8+5 / 1\*8   | mem over   |          |
+
+## Conclusion
+
+I have highlighted the best key lookup performance for the languages on 32'000'000 key dataset.
+
+Actually I'm amazed how well go performs, even its native map implementation, and actually I would give it the 1st place in these tests, while с would get the 2nd.
+
+Meanwhile it is highly possible that the models here are far from being well optimized, so the real rating can be absolutely different.

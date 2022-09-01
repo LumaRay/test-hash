@@ -22,7 +22,7 @@ The results are in milliseconds and consist of two tests in a form of __T1/T2__ 
 
 The testing has been performed on Windows 7x64.
 
-- CPU: Intel Core i7-4790 3.6 GHz 4 core / 8 threads
+- CPU: Intel Core i7-4790 3.6 GHz 4 cores / 8 threads
 - RAM: 32 Gb
 
 The test tool has been wrk: https://github.com/wg/wrk

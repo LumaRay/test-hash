@@ -25,6 +25,10 @@ The testing has been performed on Windows 7x64.
 - CPU: Intel Core i7-4790 3.6 GHz
 - RAM: 32 Gb
 
+The test tool has been wrk: https://github.com/wg/wrk
+
+The command: _~/wrk/wrk -t4 -c400 -d30s http://127.0.0.1:<port\>_
+
 ---
 
 ## 8'000'000 records with test hash 2d array on a stack

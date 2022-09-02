@@ -10,7 +10,7 @@ The algorithm doesn't hash a key, instead it expects SHA256 as a key and stores 
 
 Everywhere release x64 configurations has been used.
 
-__"Tree size"__ means size of pointer arrays in the top lovel of hash map and in the consequent layers.
+__"Tree size"__ means size of pointer arrays in the top level of hash map and in the consequent layers.
 
 So __3\*8+7 / 1\*8-4__ means 3 bytes plus 7 bits of key data will be used for addressing the top pointer array of the hash tree, while 1 byte minus 4 bits of subsequent key data will be used for addressing pointer arrays of the lower levels of the hash tree.
 

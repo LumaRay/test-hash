@@ -194,6 +194,33 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
+//32'768
+
+//Golang
+//1*8+3 1*8-2
+//11
+//2
+
+//Golang+Postgres
+//15380
+//9861
+
+//Golang+Redis
+//3389
+//3398
+
+//Golang+Memcached
+//3180
+//3328
+
+//Golang+MongoDB-no-index
+//9893
+//245567
+
+//Golang+MongoDB-with-index
+//10611
+//11382
+
 //500'000
 
 //1756
@@ -347,6 +374,7 @@ int main(int argc, char* argv[]) {
 
 
 //32'000'000 heap
+
 
 //c++ umap 28686 28591
 //c++ umap 12873 12456

@@ -1,0 +1,12 @@
+cd ~
+mkdir test-go-redis && cd test-go-redis
+sudo apt update
+sudo apt install redis
+redis-cli --version
+go mod init github.com/my/repo
+# If you are using Redis 6, install go-redis/v8:
+# go get github.com/go-redis/redis/v8
+# If you are using Redis 7, install go-redis/v9:
+# go get github.com/go-redis/redis/v9
+
+redis-cli flushall

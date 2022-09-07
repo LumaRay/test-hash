@@ -1,0 +1,34 @@
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04-ru
+cd ~
+mkdir test-go-postgres && cd test-go-postgres
+wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+go mod init test/postgres
+go get -u github.com/lib/pq
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+# sudo -i -u postgres
+# psql
+# \q
+sudo -u postgres psql
+ALTER USER postgres PASSWORD '123';
+CREATE DATABASE test
+\connect test
+# sudo -u postgres createuser --interactive
+# sudo -u postgres createdb test
+# sudo adduser sammy
+# sudo -u sammy psql
+# sudo -u sammy psql -d postgres
+\conninfo
+
+CREATE TABLE test (
+    hash BIT(256) PRIMARY KEY,
+    val integer
+);
+# INSERT INTO test VALUES ((B'00101' & ~(1::bit(256))), 123);
+# INSERT INTO test VALUES (~(123::bit(256)), 123);
+INSERT INTO test VALUES (123::bit(256), 123);
+SELECT * FROM test LIMIT 10;
+TRUNCATE TABLE test;

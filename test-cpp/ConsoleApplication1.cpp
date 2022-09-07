@@ -348,6 +348,9 @@ int main(int argc, char* argv[]) {
 
 //32'000'000 heap
 
+//c++ umap 28686 28591
+//c++ umap 12873 12456
+
 //rust HashMap 16700
 //rust HashMap 9936
 

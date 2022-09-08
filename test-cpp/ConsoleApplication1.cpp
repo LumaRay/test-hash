@@ -196,6 +196,10 @@ int main(int argc, char* argv[]) {
 
 //32'768
 
+//Golang std map
+//9
+//1
+
 //Golang
 //1*8+3 1*8-2
 //11

@@ -11,13 +11,17 @@ import (
 
 const HASH_SIZE = 32
 
+const MAX_HASHES = 32 * 1024
+const ROOT_NODE_ADDRESS_BITS = 1*8 + 3
+const CHILD_NODE_ADDRESS_BITS = 1*8 - 2
+
 // const MAX_HASHES = 8 * 1024 * 1024
 // const ROOT_NODE_ADDRESS_BITS = 3*8 + 2
 // const CHILD_NODE_ADDRESS_BITS = 1*8 - 6
 
-const MAX_HASHES = 32 * 1024 * 1024
-const ROOT_NODE_ADDRESS_BITS = 3*8 + 4
-const CHILD_NODE_ADDRESS_BITS = 1*8 - 4
+//const MAX_HASHES = 32 * 1024 * 1024
+//const ROOT_NODE_ADDRESS_BITS = 3*8 + 4
+//const CHILD_NODE_ADDRESS_BITS = 1*8 - 4
 
 // const MAX_HASHES = 64 * 1024 * 1024
 // const ROOT_NODE_ADDRESS_BITS = 3*8 + 4
@@ -110,7 +114,7 @@ func (this *HashTree[T]) Get(hash *[HASH_SIZE]uint8) *T {
 }
 
 func generateRandomHashes() {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 	for idxHash := 0; idxHash < MAX_HASHES; idxHash++ {
 		for idxByte := 0; idxByte < HASH_SIZE; idxByte += 8 {
 			binary.LittleEndian.PutUint64(hashes[idxHash][idxByte:], rand.Uint64())
@@ -155,14 +159,14 @@ func TestStdUMap(hashMap *map[[HASH_SIZE]uint8]int32) {
 
 func TestStdUMapWrongGet(hashMap *map[[HASH_SIZE]uint8]int32) {
 	var hash [HASH_SIZE]uint8
-	rand.Seed(time.Now().Unix())
+	rand.Seed(time.Now().UnixNano())
 	for idxHash := 0; idxHash < MAX_HASHES; idxHash++ {
 		for idxByte := 0; idxByte < HASH_SIZE; idxByte += 8 {
 			binary.LittleEndian.PutUint64(hash[idxByte:], rand.Uint64())
 		}
 		_, ok := (*hashMap)[hash]
 		if ok {
-			fmt.Println("TestStdUMapWrongGet!")
+			fmt.Println("TestStdUMapWrongGet!", idxHash, hashMap, hash)
 		}
 	}
 }
@@ -172,20 +176,20 @@ func main() {
 	generateRandomHashes()
 	fmt.Println("Done")
 
-	// var hashTree HashTree[int32]
-	// hashTree.Init()
+	var hashTree HashTree[int32]
+	hashTree.Init()
 
-	// start := time.Now()
-	// MakeHashTree(&hashTree)
-	// fmt.Println("MakeHashTree", time.Since(start).Milliseconds())
+	start := time.Now()
+	MakeHashTree(&hashTree)
+	fmt.Println("MakeHashTree", time.Since(start).Milliseconds())
 
-	// start = time.Now()
-	// TestHashTree(&hashTree)
-	// fmt.Println("TestHashTree", time.Since(start).Milliseconds())
+	start = time.Now()
+	TestHashTree(&hashTree)
+	fmt.Println("TestHashTree", time.Since(start).Milliseconds())
 
 	hashMap := make(map[[HASH_SIZE]uint8]int32)
 
-	start := time.Now()
+	start = time.Now()
 	MakeStdUMap(&hashMap)
 	fmt.Println("MakeStdUMap", time.Since(start).Milliseconds())
 

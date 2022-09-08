@@ -31,7 +31,7 @@ The testing has been performed on Windows 7x64.
 
 | Standard map  |1\*8+3 / 1\*8-2|  Postgres   |  MongoDB no-index   |  MongoDB index   |  Redis   |  Memcached   |
 |:-------------:|:-------------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
-|      9/1      |   11/2        |  15380/9861 |9893/245567|10611/11382|3389/3398|3180/3328
+|      6/2      |   9/4        |  15380/9861 |9893/245567|10611/11382|3389/3398|3180/3328
 
 
 ## 8'000'000 records with test hash 2d array on a stack

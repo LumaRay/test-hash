@@ -1,8 +1,9 @@
 
 sudo apt-get update
+sudo apt-get -y install memcached
 
 cd ~
 mkdir test-go-memcached && cd test-go-memcached
 go mod init test/memcached
 
-
+go get github.com/bradfitz/gomemcache/memcache

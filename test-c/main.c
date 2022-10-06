@@ -161,6 +161,8 @@ void HashNodeSetObject(struct HashNode* this, uint8_t* pHash, obj_type* pObject,
 }
 
 obj_type* HashNodeGetObject(struct HashNode* this, uint8_t* pHash, const int iByteOffset) {
+	if (!this->mChildNodes)
+		return NULL;
 	if (this->mpHash && this->mpObject) if (memcmp(this->mpHash + iByteOffset, pHash + iByteOffset, (size_t)HASH_SIZE - iByteOffset) == 0) {
 		return this->mpObject;
 	}

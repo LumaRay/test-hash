@@ -161,11 +161,11 @@ void HashNodeSetObject(struct HashNode* this, uint8_t* pHash, obj_type* pObject,
 }
 
 obj_type* HashNodeGetObject(struct HashNode* this, uint8_t* pHash, const int iByteOffset) {
-	if (!this->mChildNodes)
-		return NULL;
 	if (this->mpHash && this->mpObject) if (memcmp(this->mpHash + iByteOffset, pHash + iByteOffset, (size_t)HASH_SIZE - iByteOffset) == 0) {
 		return this->mpObject;
 	}
+	if (!this->mChildNodes)
+		return NULL;
 	int iHashAddress = ~((uint32_t)-1 << this->mAddressBits) & *((uint32_t*)&pHash[iByteOffset]);
 	struct HashNode** ppChildNode = &this->mChildNodes[iHashAddress];
 	if (*ppChildNode == NULL || iByteOffset + (int)ceil((float)this->mAddressBits / 8) >= HASH_SIZE - 1) {
